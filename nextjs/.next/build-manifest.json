@@ -26,6 +26,14 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
+<<<<<<< HEAD
+=======
+    ],
+    "/user/profile/[id]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/user/profile/[id].js"
+>>>>>>> pagina-edicao
     ]
   },
   "ampFirstPages": []
