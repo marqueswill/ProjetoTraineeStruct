@@ -19,11 +19,24 @@ export default function NavbarRestaurant(props: {
   return (
     <nav className={styles.navbar}>
       <ul className={styles.ul_l}>
-        <li className={styles.li}>Cardápio</li>
-        <li className={styles.li}>Unidades</li>
+        <li
+          className={styles.li}
+          onClick={() => {
+            router.push(`/restaurant/menu/${props.restaurant?.id}/#menu`);
+          }}
+        >
+          Cardápio
+        </li>
+        <li
+          className={styles.li}
+          onClick={() => {
+            router.push(`/restaurant/menu/${props.restaurant?.id}/#braches`);
+          }}
+        >
+          Unidades
+        </li>
       </ul>
       <a className={styles.image_container}>
-        {/* <Image src={logo} height={110} alt=""></Image> */}
         <img
           src={`/images/restaurants/${props.restaurant.name
             .toLowerCase()
@@ -32,8 +45,15 @@ export default function NavbarRestaurant(props: {
         />
       </a>
       <ul className={styles.ul_r}>
-        <li className={styles.li}>Contato</li>
         <li
+          className={styles.li}
+          onClick={() => {
+            router.push(`/restaurant/menu/${props.restaurant?.id}/#contact`);
+          }}
+        >
+          Contato
+        </li>
+        {/* <li
           className={styles.li}
           onClick={() => {
             if (session && session.user) {
@@ -44,6 +64,9 @@ export default function NavbarRestaurant(props: {
           }}
         >
           Carrinho
+        </li> */}
+        <li className={styles.li}>
+          <NavbarLogin />
         </li>
       </ul>
     </nav>

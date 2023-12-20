@@ -8,6 +8,9 @@
   /* padding: 1 5px; */
 }
 
+.product_info{
+  text-align: left;
+}
 .restaurant_logo {
   width: 175px;
   height: 175px;

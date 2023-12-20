@@ -56,15 +56,6 @@ export default function ShowCartProduct(props: { cartProduct: CartProduct }) {
         />
       </th>
       <th className={styles.coluna1}>
-        {/* <img
-          src={`/images/products/${props.cartProduct.product.name
-            .toLowerCase()
-            .replaceAll(" ", "_")}.png`}
-          alt={`/images/products/${props.cartProduct.product.name
-            .toLowerCase()
-            .replaceAll(" ", "_")}.png`}
-          className={styles.product_image}
-        /> */}
         <span className={styles.product_info}>
           <h1 className={styles.name}>{props.cartProduct.product.name}</h1>
           <p className={styles.description}>
