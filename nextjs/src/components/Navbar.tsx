@@ -29,6 +29,15 @@ export default function Navbar() {
             Contato
           </button> */}
 
+          <button
+            onClick={() => {
+              router.push(`/search`);
+            }}
+            className={styles.button}
+          >
+            Navegar
+          </button>
+          
           {session && session.user && session.user.isOwner && (
             <button
               onClick={() => {
