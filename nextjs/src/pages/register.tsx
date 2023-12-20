@@ -1,3 +1,4 @@
+import { verifyRestaurantData, verifyUserData } from "@/lib/register";
 import styles from "@/styles/RegisterPage.module.css";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -14,14 +15,29 @@ async function handleRestaurantRegister(props: {
     ownerEmail: string;
   };
 }) {
-  const res = await fetch(
-    `http://localhost:3000/api/register/owner/${props.restaurant.ownerEmail}`,
-    {
-      method: "POST",
-      body: JSON.stringify(props),
-      headers: { "Content-Type": "application/json" },
+  try {
+    verifyRestaurantData(props);
+
+    const res = await fetch(
+      `http://localhost:3000/api/register/restaurant/${props.restaurant.ownerEmail}`,
+      {
+        method: "POST",
+        body: JSON.stringify(props),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+
+    const message = await res.json();
+
+    console.log(message);
+    if (res.ok) {
+      alert(message);
+      window.location.href = "/api/auth/signin";
     }
-  );
+  } catch (error: any) {
+    alert(error.message);
+  }
+
 }
 
 async function handleUserRegister(props: {
@@ -32,14 +48,27 @@ async function handleUserRegister(props: {
     confirmPassword: string;
   };
 }) {
-  const res = await fetch(
-    `http://localhost:3000/api/register/owner/${props.user.email}`,
-    {
-      method: "POST",
-      body: JSON.stringify(props),
-      headers: { "Content-Type": "application/json" },
+  try {
+    verifyUserData(props);
+
+    const res = await fetch(
+      `http://localhost:3000/api/register/user/${props.user.email}`,
+      {
+        method: "POST",
+        body: JSON.stringify(props),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    const message = await res.json();
+
+    console.log(message);
+    if (res.ok) {
+      alert(message);
+      window.location.href = "/api/auth/signin";
     }
-  );
+  } catch (error: any) {
+    alert(error.message);
+  }
 }
 
 export default function RegisterPage() {

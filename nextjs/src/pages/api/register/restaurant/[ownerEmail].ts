@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../../../prisma/prisma";
 
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -12,34 +11,33 @@ export default async function handler(
     case "POST":
       {
         try {
-          const user = await prisma.user.create({
-            data: {
-              email: ownerEmail,
-              name: req.body.owner.name,
-              password: req.body.owner.password,
-              image:
-                "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png",
-              isOwner: true,
-            },
+          const user = await prisma.user.findUnique({
+            where: { email: ownerEmail },
           });
 
           if (user) {
-            const restaurant = await prisma.restaurant.create({
-              data: {
-                ownerEmail: ownerEmail,
-                name: req.body.restaurant.name,
-                location: req.body.restaurant.location,
-                phone: req.body.restaurant.phone,
-                contacts: req.body.restaurant.contacts,
-                description: req.body.restaurant.description,
-                schedule: req.body.restaurant.schedule,
-              },
-            });
-            if (restaurant) {
-              res.status(200).json(user);
-            } else {
-              const message: string = "Couldn't create restaurant";
+            if (user.isOwner) {
+              const message: string = "User already has a restaurant";
               res.status(400).json(message);
+            } else {
+              const restaurant = await prisma.restaurant.create({
+                data: {
+                  ownerEmail: ownerEmail,
+                  name: req.body.restaurant.name,
+                  location: req.body.restaurant.location,
+                  phone: req.body.restaurant.phone,
+                  contacts: req.body.restaurant.contacts,
+                  description: req.body.restaurant.description,
+                  schedule: req.body.restaurant.schedule,
+                },
+              });
+              if (restaurant) {
+                const message: string = "Restaurant created successfully";
+                res.status(200).json(message);
+              } else {
+                const message: string = "Couldn't find user";
+                res.status(400).json(message);
+              }
             }
           } else {
             const message: string = "Couldn't create owner";
