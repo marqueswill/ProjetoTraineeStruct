@@ -25,9 +25,13 @@ export default function SearchPage({
   return (
     <div>
       {/* {JSON.stringify(restaurants)} */}
-      {restaurants.map((restaurant: Restaurant) => {
-        return <RestaurantCard restaurant={restaurant} />;
-      })}
+      {restaurants ? (
+        restaurants.map((restaurant: Restaurant) => {
+          return <RestaurantCard restaurant={restaurant} />;
+        })
+      ) : (
+        <h1>Cadê????</h1>
+      )}
     </div>
   );
 }
