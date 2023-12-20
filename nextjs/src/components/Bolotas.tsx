@@ -2,7 +2,7 @@ import styles from "@/styles/Bolotas.module.css";
 
 export default function Bolotas() {
   return (
-    <>
+    <div className={styles.body}>
       <div className="Ellipse2">
         <a className={styles.Ellipse2} />
       </div>
@@ -24,6 +24,6 @@ export default function Bolotas() {
       <div className="Ellipse8">
         <a className={styles.Ellipse8} />
       </div>
-    </>
+    </div>
   );
 }

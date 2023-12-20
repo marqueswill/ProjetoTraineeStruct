@@ -7,24 +7,24 @@ export type Restaurant = {
   description: string;
   contacts: string;
   ownerEmail: string;
-  user: null | User;
-  menu: null | Menu;
+  user?: null | User;
+  menu?: null | Menu;
 };
 
 export type Menu = {
   id: number;
   name: string;
   restaurantId: number;
-  restaurant: null | Restaurant;
-  categories: null | Category[];
+  restaurant?: null | Restaurant;
+  categories?: null | Category[];
 };
 
 export type Category = {
   id: number;
   name: string;
   menuId: number;
-  menu: null | Menu;
-  products: null | Product[];
+  menu?: null | Menu;
+  products?: null | Product[];
 };
 
 export type Product = {
@@ -36,8 +36,8 @@ export type Product = {
   description: string;
   image: string;
   categoryId: number;
-  category: null | Category;
-  cartProduct: null | CartProduct[];
+  category?: null | Category;
+  cartProduct?: null | CartProduct[];
 };
 
 export type User = {
@@ -47,15 +47,15 @@ export type User = {
   password: string;
   image: string;
   isOwner: Boolean;
-  cart: null | Cart;
-  restaurant: null | Restaurant;
+  cart?: null | Cart;
+  restaurant?: null | Restaurant;
 };
 
 export type Cart = {
   id: number;
   userId: number;
-  user: null | User;
-  cartProduct: null | CartProduct[];
+  user?: null | User;
+  cartProduct?: null | CartProduct[];
 };
 
 export type CartProduct = {
@@ -64,9 +64,9 @@ export type CartProduct = {
   productId: number;
   restaurantId: number;
   quantity: number;
-  cart: null | Cart;
-  product: null | Product;
-  restaurant: null | Restaurant;
+  cart?: null | Cart;
+  product?: null | Product;
+  restaurant?: null | Restaurant;
 };
 
 //----------------------------------------------------------------------------//

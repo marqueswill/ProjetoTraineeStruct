@@ -1,5 +1,6 @@
 `use client`;
 
+import NavbarRestaurant from "@/components/NavbarRestaurant";
 import ShowCartProduct from "@/components/ShowCartProduct";
 import styles from "@/styles/Cart.module.css";
 import { Cart, defaultCart } from "@/types/types";
@@ -62,19 +63,27 @@ export default function CartPage({
 
   return (
     <div className={styles.page}>
+      {/* <NavbarRestaurant/> */}
       <div>
         <h1>MEU CARRINHO</h1>
       </div>
       {!cart.cartProduct || JSON.stringify(cart.cartProduct) === "[]" ? (
-        <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap:"30px"
+          }}
+        >
           <h2>Adicione produtos ao carrinho</h2>
-          {/* <button
+          <button
             onClick={() => {
               router.push(`/search`);
             }}
           >
             Pesquisar restaurantes
-          </button> */}
+          </button>
         </div>
       ) : (
         cart.cartProduct && (

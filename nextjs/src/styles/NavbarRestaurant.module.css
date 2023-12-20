@@ -1,17 +1,19 @@
-
-
 .navbar {
   width: 100%;
-  height: 250px;
-  position: relative;
+  height: fit-content;
+  /* position: fixed; */
+  top: 0;
+  left: 0;
+  right: 0;
+  /* z-index: 1; */
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   font-weight: bold;
-
-  border-bottom: solid black 2px;
+  background-color: white;
+  /* border-bottom: solid black 3px; */
 }
 
 .ul_l {
@@ -19,6 +21,7 @@
   flex-direction: row;
   margin-right: 50px;
   margin-left: 50px;
+  align-items: center;
 }
 
 .ul_r {
@@ -26,6 +29,7 @@
   flex-direction: row;
   margin-right: 50px;
   margin-left: 50px;
+  align-items: center;
 }
 
 .ul_l .li {
@@ -51,7 +55,7 @@
 
 .image_container {
   width: 375px;
-  height: 230px;
+  height: 200px;
   overflow: hidden;
 }
 
