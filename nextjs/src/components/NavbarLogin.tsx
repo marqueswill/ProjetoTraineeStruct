@@ -27,14 +27,24 @@ export default function SigninButton() {
     );
   }
   return (
-    <button
-      onClick={() => {
-        router.push(`/api/auth/signin`);
-      }}
-      className={styles.button}
-    >
-      Entrar
-    </button>
+    <>
+      <button
+        onClick={() => {
+          router.push(`/register`);
+        }}
+        className={styles.button}
+      >
+        Registrar
+      </button>
+      <button
+        onClick={() => {
+          router.push(`/api/auth/signin`);
+        }}
+        className={styles.button}
+      >
+        Entrar
+      </button>
+    </>
     // <button onClick={() => signIn()} className={styles.button}>
     //   Entrar
     // </button>

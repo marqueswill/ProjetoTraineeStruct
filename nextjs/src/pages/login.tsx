@@ -17,12 +17,12 @@ export default function LoginPage() {
     <div className={styles.page}>
       <div className={styles.login_div}>
         <form
+          className={styles.form}
           onSubmit={(event) => {
-            event.preventDefault()
+            event.preventDefault();
             handleSubmit();
           }}
           action=""
-          className={styles.form}
         >
           <h1 className={styles.h1}>Entrar</h1>
           <span className={styles.input_span}>
@@ -45,7 +45,7 @@ export default function LoginPage() {
             Entrar
           </button>
         </form>
-        
+
         <button
           className={styles.google_button}
           onClick={() => signIn(``, { callbackUrl: `/` })}

@@ -24,6 +24,7 @@ export default function UserMenuPage({
   user,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
+  const { data: session } = useSession();
 
   const { status } = useSession({
     required: true,
@@ -40,11 +41,19 @@ export default function UserMenuPage({
       </div>
     );
   } else {
-    return (
-      <div>
-        {/* {JSON.stringify(user)} */}
-        <a href={`/restaurant/menu/${user.restaurant.id}`}>Cardápio</a>
-      </div>
-    );
+    if (session && session.user) {
+      if (session.user.id !== router.query.ownerId)
+        router.push(`/user/profile`);
+      else {
+        return (
+          <div>
+            {/* {JSON.stringify(user)} */}
+            {session.user.isOwner && (
+              <a href={`/restaurant/menu/${user.restaurant.id}`}>Cardápio</a>
+            )}
+          </div>
+        );
+      }
+    }
   }
 }

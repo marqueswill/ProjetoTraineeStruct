@@ -21,13 +21,14 @@ export default function Navbar() {
       </div>
       <div className={styles.actions_div}>
         <div className={styles.actions}>
-          {/* <button onClick={() => {}} className={styles.button}>
-            Sobre
+          <button
+            onClick={() => {
+              router.push(`/search`);
+            }}
+            className={styles.button}
+          >
+            Navegar
           </button>
-
-          <button onClick={() => {}} className={styles.button}>
-            Contato
-          </button> */}
 
           {session && session.user && session.user.isOwner && (
             <button

@@ -1,14 +1,10 @@
-import styles from "@/styles/Register.module.css";
+import { verifyRestaurantData, verifyUserData } from "@/lib/register";
+import styles from "@/styles/RegisterPage.module.css";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-async function handleRegister(props: {
-  owner: {
-    email: string;
-    name: string;
-    password: string;
-    confirmPassword: string;
-  };
+async function handleRestaurantRegister(props: {
   restaurant: {
     name: string;
     location: string;
@@ -16,20 +12,70 @@ async function handleRegister(props: {
     contacts: string;
     description: string;
     schedule: string;
+    ownerEmail: string;
   };
 }) {
-  const res = await fetch(
-    `http://localhost:3000/api/register/owner/${props.owner.email}`,
-    {
-      method: "POST",
-      body: JSON.stringify(props),
-      headers: { "Content-Type": "application/json" },
+  try {
+    verifyRestaurantData(props);
+
+    const res = await fetch(
+      `http://localhost:3000/api/register/restaurant/${props.restaurant.ownerEmail}`,
+      {
+        method: "POST",
+        body: JSON.stringify(props),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+
+    const message = await res.json();
+
+    console.log(message);
+    if (res.ok) {
+      alert(message);
+      window.location.href = "/api/auth/signin";
     }
-  );
+  } catch (error: any) {
+    alert(error.message);
+  }
+
+}
+
+async function handleUserRegister(props: {
+  user: {
+    email: string;
+    name: string;
+    password: string;
+    confirmPassword: string;
+  };
+}) {
+  try {
+    verifyUserData(props);
+
+    const res = await fetch(
+      `http://localhost:3000/api/register/user/${props.user.email}`,
+      {
+        method: "POST",
+        body: JSON.stringify(props),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    const message = await res.json();
+
+    console.log(message);
+    if (res.ok) {
+      alert(message);
+      window.location.href = "/api/auth/signin";
+    }
+  } catch (error: any) {
+    alert(error.message);
+  }
 }
 
 export default function RegisterPage() {
-  const data = useRouter().query;
+  const { data: session } = useSession();
+  const router = useRouter();
+  const data = router.query;
+
   const [email, setEmail] = useState(data.email);
   const [name, setName] = useState(data.name);
   const [password, setPassword] = useState("");
@@ -49,40 +95,32 @@ export default function RegisterPage() {
           action=""
           onSubmit={(event) => {
             event.preventDefault();
-            handleRegister({
-              owner: {
+            handleUserRegister({
+              user: {
                 email: String(email),
                 name: String(name),
                 password: String(password),
                 confirmPassword: String(confirmPassword),
               },
-              restaurant: {
-                name: String(restaurantName),
-                location: String(location),
-                phone: String(phone),
-                contacts: String(contact),
-                description: String(description),
-                schedule: String(schedule),
-              },
             });
           }}
         >
-          <div className={styles.user_info}>
-            <h1 className={styles.h1}>Informações pessoais</h1>
+          <h1 className={styles.h1}>Informações pessoais</h1>
+          <div className={styles.div_inputs}>
             <span className={styles.span_input}>
-              <label htmlFor="">Email: *</label>
+              <label htmlFor="" className={styles.label}>Email: *</label>
               <input
                 onChange={(event) => {
                   setEmail(event.target.value);
                 }}
                 value={email}
                 className={styles.input}
-                type="email"
+                type="email"  
                 placeholder="Digite aqui"
               />
             </span>
             <span className={styles.span_input}>
-              <label htmlFor="">Nome: *</label>
+              <label htmlFor="" className={styles.label}>Nome: *</label>
               <input
                 onChange={(event) => {
                   setName(event.target.value);
@@ -94,7 +132,7 @@ export default function RegisterPage() {
               />
             </span>
             <span className={styles.span_input}>
-              <label htmlFor="">Senha: *</label>
+              <label htmlFor="" className={styles.label}>Senha: *</label>
               <input
                 onChange={(event) => {
                   setPassword(event.target.value);
@@ -105,7 +143,7 @@ export default function RegisterPage() {
               />
             </span>
             <span className={styles.span_input}>
-              <label htmlFor="">Repita sua senha: *</label>
+              <label htmlFor="" className={styles.label}>Repita sua senha: *</label>
               <input
                 onChange={(event) => {
                   setConfirmPassword(event.target.value);
@@ -117,10 +155,41 @@ export default function RegisterPage() {
             </span>
           </div>
 
-          <div className={styles.restaurant_info}>
-            <h1 className={styles.h1}>Informações do Restaurante</h1>
+          <button className={styles.button} type="submit">
+            Registrar Usuário
+          </button>
+        </form>
+      </div>
+
+      <div className={styles.register_div}>
+        <form
+          className={styles.form}
+          action=""
+          onSubmit={(event) => {
+            event.preventDefault();
+            if (session && session.user) {
+              handleRestaurantRegister({
+                restaurant: {
+                  name: String(restaurantName),
+                  location: String(location),
+                  phone: String(phone),
+                  contacts: String(contact),
+                  description: String(description),
+                  schedule: String(schedule),
+                  ownerEmail: String(session.user.email),
+                },
+              });
+            } else {
+              alert("Faça login para registrar restaurante!");
+              router.push(`/api/auth/signin`);
+            }
+          }}
+        >
+          <h1 className={styles.h1}>Informações do Restaurante</h1>
+
+          <div className={styles.div_inputs}>
             <span className={styles.span_input}>
-              <label htmlFor="">Nome: *</label>
+              <label htmlFor="" className={styles.label}>Nome: *</label>
               <input
                 onChange={(event) => {
                   setRestaurantName(event.target.value);
@@ -131,7 +200,7 @@ export default function RegisterPage() {
               />
             </span>
             <span className={styles.span_input}>
-              <label htmlFor="">Endereço: *</label>
+              <label htmlFor="" className={styles.label}>Endereço: *</label>
               <input
                 onChange={(event) => {
                   setLocation(event.target.value);
@@ -142,7 +211,7 @@ export default function RegisterPage() {
               />
             </span>
             <span className={styles.span_input}>
-              <label htmlFor="">Telefone: *</label>
+              <label htmlFor="" className={styles.label}>Telefone: *</label>
               <input
                 onChange={(event) => {
                   setPhone(event.target.value);
@@ -153,7 +222,7 @@ export default function RegisterPage() {
               />
             </span>
             <span className={styles.span_input}>
-              <label htmlFor="">Contato: *</label>
+              <label htmlFor="" className={styles.label}>Contato: *</label>
               <input
                 onChange={(event) => {
                   setContact(event.target.value);
@@ -164,7 +233,7 @@ export default function RegisterPage() {
               />
             </span>
             <span className={styles.span_input}>
-              <label htmlFor="">Descriçã: *</label>
+              <label htmlFor="" className={styles.label}>Descriçã: *</label>
               <input
                 onChange={(event) => {
                   setDescription(event.target.value);
@@ -175,7 +244,7 @@ export default function RegisterPage() {
               />
             </span>{" "}
             <span className={styles.span_input}>
-              <label htmlFor="">Horário: *</label>
+              <label htmlFor="" className={styles.label}>Horário: *</label>
               <input
                 onChange={(event) => {
                   setSchedule(event.target.value);
@@ -186,8 +255,7 @@ export default function RegisterPage() {
               />
             </span>
           </div>
-
-          <button className={styles.submit_button} type="submit">
+          <button className={styles.button} type="submit">
             Registrar restaurante
           </button>
         </form>
