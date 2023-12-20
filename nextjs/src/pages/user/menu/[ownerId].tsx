@@ -4,6 +4,8 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
+
+
 export const getServerSideProps: GetServerSideProps<{
   user: any;
 }> = async (context) => {

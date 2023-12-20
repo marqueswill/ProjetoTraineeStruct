@@ -1,11 +1,58 @@
 `use session`;
 
 import styles from "@/styles/Profile.module.css";
-import { User, defaultUser } from "@/types/types";
+import { Restaurant, User, defaultUser } from "@/types/types";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
+
+async function handleUserEditSubmit(props: {
+  id: number;
+  email: string;
+  name: string;
+  password: string;
+  image: string;
+}) {
+  const res = await fetch(`http://localhost:3000/api/user/owner/${props.id}`, {
+    method: "PUT",
+    body: JSON.stringify(props),
+    headers: { "Content-Type": "application/json" },
+  });
+
+  const message = await res.json();
+
+  console.log(message);
+  if (res.ok) {
+    alert(message);
+  }
+}
+
+async function handleRestaurantEditSubmit(props: {
+  ownerEmail: string;
+  name: string;
+  location: string;
+  phone: string;
+  contacts: string;
+  description: string;
+  schedule: string;
+}) {
+  const res = await fetch(
+    `http://localhost:3000/api/restaurant/${props.ownerEmail}`,
+    {
+      method: "PUT",
+      body: JSON.stringify(props),
+      headers: { "Content-Type": "application/json" },
+    }
+  );
+
+  const message = await res.json();
+
+  console.log(message);
+  if (res.ok) {
+    alert(message);
+  }
+}
 
 export const getServerSideProps: GetServerSideProps<{
   user: User;
@@ -105,7 +152,21 @@ export default function UserMenuPage({
           ) : (
             <div>
               <div>
-                <form action="">
+                <form
+                  action=""
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    if (confirm("Deseja confirmar alterações?")) {
+                      handleUserEditSubmit({
+                        id: userId,
+                        email: email,
+                        name: name,
+                        password: password,
+                        image: image,
+                      });
+                    }
+                  }}
+                >
                   <h1>Dados Pessoais:</h1>
                   <div className={styles.div_data}>
                     <span>
@@ -160,7 +221,23 @@ export default function UserMenuPage({
               {isOwner && (
                 <div>
                   <h1>Dados Restaurante:</h1>
-                  <form action="">
+                  <form
+                    action=""
+                    onSubmit={(event) => {
+                      event.preventDefault();
+                      if (confirm("Deseja confirmar alterações?")) {
+                        handleRestaurantEditSubmit({
+                          ownerEmail: email,
+                          name: String(restaurantName),
+                          location: String(location),
+                          phone: String(phone),
+                          contacts: String(contact),
+                          description: String(description),
+                          schedule: String(schedule),
+                        });
+                      }
+                    }}
+                  >
                     <div className={styles.div_data}>
                       <span>
                         <label htmlFor=""></label>

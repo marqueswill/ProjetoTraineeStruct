@@ -32,28 +32,30 @@ export default async function handler(
     //   }
     //   break;
 
-    // case "PUT":
-    //   {
-    //     try {
-    //       const newMenu = await prisma.menu.update({
-    //         where: { id: cartId },
-    //         data: req.body,
-    //       });
+    case "PUT":
+      {
+        try {
+          const user = await prisma.user.update({
+            where: { id: userId },
+            data: req.body,
+          });
 
-    //       if (newMenu) {
-    //         res.status(200).json(newMenu);
-    //       } else {
-    //         const message: string = "Couldn't update cart";
-    //         res.status(400).json(message);
-    //       }
-    //     } catch (error) {
-    //       const message: string = "Error trying to update the cart";
-    //       res.status(500).json(message);
-    //     } finally {
-    //       await prisma.$disconnect();
-    //     }
-    //   }
-    //   break;
+          if (user) {
+            const message: string = "User data updated successufully";
+
+            res.status(200).json(message);
+          } else {
+            const message: string = "Couldn't update user data";
+            res.status(400).json(message);
+          }
+        } catch (error) {
+          const message: string = "Error trying to access the database";
+          res.status(500).json(message);
+        } finally {
+          await prisma.$disconnect();
+        }
+      }
+      break;
 
     case "GET":
       {
