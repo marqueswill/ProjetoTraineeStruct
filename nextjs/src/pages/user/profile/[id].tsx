@@ -114,42 +114,35 @@ export default function UserMenuPage({
 
       return (
         <div>
-          <button
-            className={styles.button_edit}
-            onClick={() => {
-              setModoEdicao((prev) => !prev);
-            }}
-          >
-            <img src="/images/icons/edit.svg" alt="" />
-          </button>
           {!modoEdicao ? (
-            <div>
-              <div>
-                <h1>Dados Pessoais:</h1>
+            <div className={styles.div_maior}>
+              <div className={styles.div_sub} style={{marginRight: "25px"}}>
+                <h1 className={styles.h1_prin}>Dados Pessoais:</h1>
                 <div className={styles.div_data}>
                   <span>
-                    <img src={image} alt="" />
+                    <img src={image} alt="" className={styles.img}/>
                   </span>
-                  <span>{userId}</span>
-                  <span>{email}</span>
-                  <span>{name}</span>
+                  <span className={styles.span_termo}><b>ID:</b> {userId}</span>
+                  <span className={styles.span_termo}><b>Email:</b> {email}</span>
+                  <span className={styles.span_termo}><b>Nome:</b> {name}</span>
                 </div>
               </div>
               {isOwner && (
-                <div>
-                  <h1>Dados Restaurante:</h1>
+                <div className={styles.div_sub}>
+                  <h1 className={styles.h1_prin}>Dados Restaurante:</h1>
                   <div className={styles.div_data}>
-                    <span>{restaurantName}</span>
-                    <span>{description}</span>
-                    <span>{location}</span>
-                    <span>{phone}</span>
-                    <span>{contact}</span>
-                    <span>{schedule}</span>
+                    <span className={styles.span_termo}><b>Nome: </b>{restaurantName}</span>
+                    <span className={styles.span_termo}><b>Descrição: </b>{description}</span>
+                    <span className={styles.span_termo}><b>Localização: </b>{location}</span>
+                    <span className={styles.span_termo}><b>Telefone: </b>{phone}</span>
+                    <span className={styles.span_termo}><b>Contatos: </b>{contact}</span>
+                    <span className={styles.span_termo}><b>Horários: </b>{schedule}</span>
                   </div>
                 </div>
               )}
             </div>
           ) : (
+<<<<<<< HEAD
             <div>
               <div>
                 <form
@@ -168,14 +161,21 @@ export default function UserMenuPage({
                   }}
                 >
                   <h1>Dados Pessoais:</h1>
+=======
+            <div className={styles.div_maior}>
+              <div className={styles.div_sub} style={{marginRight: "25px"}}>
+                <form action="">
+                  <h1 className={styles.h1_prin}>Dados Pessoais:</h1>
+>>>>>>> 57bc9efb (Estilizando pagina de edição de perfil)
                   <div className={styles.div_data}>
                     <span>
                       <img src={image} alt={name} />
                     </span>
-                    <span>ID: {userId}</span>
+                    <span className={styles.span_termo}>ID: {userId}</span>
                     <span>
                       <label htmlFor=""></label>
                       <input
+                        className={styles.input}
                         type="text"
                         value={name}
                         onChange={(event) => {
@@ -186,6 +186,7 @@ export default function UserMenuPage({
                     <span>
                       <label htmlFor=""></label>
                       <input
+                        className={styles.input}
                         type="email"
                         value={email}
                         onChange={(event) => {
@@ -196,6 +197,7 @@ export default function UserMenuPage({
                     <span>
                       <label htmlFor=""></label>
                       <input
+                        className={styles.input}
                         type="password"
                         value={password}
                         onChange={(event) => {
@@ -206,6 +208,7 @@ export default function UserMenuPage({
                     <span>
                       <label htmlFor=""></label>
                       <input
+                        className={styles.input}
                         type="text"
                         value={image}
                         onChange={(event) => {
@@ -214,11 +217,12 @@ export default function UserMenuPage({
                       />
                     </span>
                   </div>
-                  <button type="submit">Salvar mudanças</button>
+                  <button className={styles.button_edit} type="submit">Salvar mudanças</button>
                 </form>
               </div>
 
               {isOwner && (
+<<<<<<< HEAD
                 <div>
                   <h1>Dados Restaurante:</h1>
                   <form
@@ -238,10 +242,16 @@ export default function UserMenuPage({
                       }
                     }}
                   >
+=======
+                <div className={styles.div_sub} style={{marginRight: "25px"}}>
+                  <h1 className={styles.h1_prin}>Dados Restaurante:</h1>
+                  <form action="">
+>>>>>>> 57bc9efb (Estilizando pagina de edição de perfil)
                     <div className={styles.div_data}>
                       <span>
                         <label htmlFor=""></label>
                         <input
+                          className={styles.input}
                           type="text"
                           value={restaurantName}
                           onChange={(event) => {
@@ -252,6 +262,7 @@ export default function UserMenuPage({
                       <span>
                         <label htmlFor=""></label>
                         <input
+                          className={styles.input}
                           type="text"
                           value={description}
                           onChange={(event) => {
@@ -262,6 +273,7 @@ export default function UserMenuPage({
                       <span>
                         <label htmlFor=""></label>
                         <input
+                          className={styles.input}
                           type="text"
                           value={location}
                           onChange={(event) => {
@@ -272,6 +284,7 @@ export default function UserMenuPage({
                       <span>
                         <label htmlFor=""></label>
                         <input
+                          className={styles.input}
                           type="text"
                           value={phone}
                           onChange={(event) => {
@@ -282,6 +295,7 @@ export default function UserMenuPage({
                       <span>
                         <label htmlFor=""></label>
                         <input
+                          className={styles.input}
                           type="text"
                           value={contact}
                           onChange={(event) => {
@@ -292,6 +306,7 @@ export default function UserMenuPage({
                       <span>
                         <label htmlFor=""></label>
                         <input
+                          className={styles.input}
                           type="text"
                           value={schedule}
                           onChange={(event) => {
@@ -300,13 +315,22 @@ export default function UserMenuPage({
                         />
                       </span>
                     </div>
-                    <button type="submit">Salvar mudanças</button>
+                    <button className={styles.button_edit} type="submit">Salvar mudanças</button>
                   </form>
                 </div>
               )}
             </div>
           )}
           ;
+          <button
+            className={styles.button_edit}
+            onClick={() => {
+              setModoEdicao((prev) => !prev);
+            }}
+          >
+            <img src="/images/icons/edit.svg" alt="" />
+            <span className={styles.span_editar}>Editar</span>
+          </button>
         </div>
       );
     }

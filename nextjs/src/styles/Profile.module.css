@@ -7,12 +7,65 @@
   width:  fit-content;
   height: fit-content;
   cursor: pointer;
-  background-color: transparent;
+  background-color: grey;
   border: none;
+  border-radius: 25px;
+  padding: 10px;
 }
-
 
 .button_edit img {
     width: 100px;
     height: 100px;
+}
+
+.div_maior {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  margin: 20px;
+}
+
+.div_sub {
+  background-color: #f84542;
+  padding: 30px;
+  border-radius: 25px;
+}
+
+.span_termo {
+  color: #000;
+  font-family: RobotoSlab;
+  font-size: 32px;
+  font-style: normal;
+}
+
+.span_editar {
+  font-size: 3vw;
+  vertical-align: text-bottom;
+}
+
+.h1_prin { 
+  color: #000;
+  font-family: RobotoSlab;
+  font-size: 48px;
+  font-style: normal;
+  text-align: center;
+}
+
+.img {
+  border-radius: 25px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.input {
+  width: 500px;
+  height: 50px;
+  line-height: normal;
+  font-size: 25px;
+  font-family: RobotoSlab;
+  padding-left: 20px;
+  padding-right: 20px;
 }
