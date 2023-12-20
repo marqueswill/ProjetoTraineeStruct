@@ -96,7 +96,12 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className={styles.teste}>
+      <div
+        className={styles.teste}
+        onClick={() => {
+          router.push(`/easteregg`);
+        }}
+      >
         ──────▄▀▄─────▄▀▄
         <br />
         ─────▄█░░▀▀▀▀▀░░█▄
