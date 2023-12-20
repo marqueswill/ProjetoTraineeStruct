@@ -2,3 +2,12 @@
   margin-top: 12rem;
 }
 
+.teste {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.teste img {
+  width: 500px;
+}
