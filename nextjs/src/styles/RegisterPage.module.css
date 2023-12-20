@@ -52,8 +52,8 @@
 
 .button {
   width: 250px;
-  height: 50px;
-  padding: 25px;
+  height:fit-content;
+  padding: 10px;
   background-color: #d3fad6;
   cursor: pointer;
   border-radius: 30px;
