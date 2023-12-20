@@ -27,7 +27,9 @@ export default function DropDownProfile() {
         <button
           className={styles.dropDownItem}
           onClick={() => {
-            router.push(`/user/profile`);
+            if (session && session.user) {
+              router.push(`/user/profile/${session.user.id}`);
+            }
           }}
         >
           Perfil

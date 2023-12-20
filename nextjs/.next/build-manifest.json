@@ -27,15 +27,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/user/menu/[ownerId]": [
+    "/user/profile/[id]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/user/menu/[ownerId].js"
-    ],
-    "/user/profile": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/user/profile.js"
+      "static/chunks/pages/user/profile/[id].js"
     ]
   },
   "ampFirstPages": []

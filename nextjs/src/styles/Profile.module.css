@@ -1,0 +1,18 @@
+.div_data {
+  display: flex;
+  flex-direction: column;
+}
+
+.button_edit {
+  width:  fit-content;
+  height: fit-content;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+
+.button_edit img {
+    width: 100px;
+    height: 100px;
+}
