@@ -108,19 +108,19 @@ export default function RegisterPage() {
           <h1 className={styles.h1}>Informações pessoais</h1>
           <div className={styles.div_inputs}>
             <span className={styles.span_input}>
-              <label htmlFor="">Email: *</label>
+              <label htmlFor="" className={styles.label}>Email: *</label>
               <input
                 onChange={(event) => {
                   setEmail(event.target.value);
                 }}
                 value={email}
                 className={styles.input}
-                type="email"
+                type="email"  
                 placeholder="Digite aqui"
               />
             </span>
             <span className={styles.span_input}>
-              <label htmlFor="">Nome: *</label>
+              <label htmlFor="" className={styles.label}>Nome: *</label>
               <input
                 onChange={(event) => {
                   setName(event.target.value);
@@ -132,7 +132,7 @@ export default function RegisterPage() {
               />
             </span>
             <span className={styles.span_input}>
-              <label htmlFor="">Senha: *</label>
+              <label htmlFor="" className={styles.label}>Senha: *</label>
               <input
                 onChange={(event) => {
                   setPassword(event.target.value);
@@ -143,7 +143,7 @@ export default function RegisterPage() {
               />
             </span>
             <span className={styles.span_input}>
-              <label htmlFor="">Repita sua senha: *</label>
+              <label htmlFor="" className={styles.label}>Repita sua senha: *</label>
               <input
                 onChange={(event) => {
                   setConfirmPassword(event.target.value);
@@ -189,7 +189,7 @@ export default function RegisterPage() {
 
           <div className={styles.div_inputs}>
             <span className={styles.span_input}>
-              <label htmlFor="">Nome: *</label>
+              <label htmlFor="" className={styles.label}>Nome: *</label>
               <input
                 onChange={(event) => {
                   setRestaurantName(event.target.value);
@@ -200,7 +200,7 @@ export default function RegisterPage() {
               />
             </span>
             <span className={styles.span_input}>
-              <label htmlFor="">Endereço: *</label>
+              <label htmlFor="" className={styles.label}>Endereço: *</label>
               <input
                 onChange={(event) => {
                   setLocation(event.target.value);
@@ -211,7 +211,7 @@ export default function RegisterPage() {
               />
             </span>
             <span className={styles.span_input}>
-              <label htmlFor="">Telefone: *</label>
+              <label htmlFor="" className={styles.label}>Telefone: *</label>
               <input
                 onChange={(event) => {
                   setPhone(event.target.value);
@@ -222,7 +222,7 @@ export default function RegisterPage() {
               />
             </span>
             <span className={styles.span_input}>
-              <label htmlFor="">Contato: *</label>
+              <label htmlFor="" className={styles.label}>Contato: *</label>
               <input
                 onChange={(event) => {
                   setContact(event.target.value);
@@ -233,7 +233,7 @@ export default function RegisterPage() {
               />
             </span>
             <span className={styles.span_input}>
-              <label htmlFor="">Descriçã: *</label>
+              <label htmlFor="" className={styles.label}>Descriçã: *</label>
               <input
                 onChange={(event) => {
                   setDescription(event.target.value);
@@ -244,7 +244,7 @@ export default function RegisterPage() {
               />
             </span>{" "}
             <span className={styles.span_input}>
-              <label htmlFor="">Horário: *</label>
+              <label htmlFor="" className={styles.label}>Horário: *</label>
               <input
                 onChange={(event) => {
                   setSchedule(event.target.value);
