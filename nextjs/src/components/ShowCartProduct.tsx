@@ -42,18 +42,22 @@ export default function ShowCartProduct(props: { cartProduct: CartProduct }) {
   return (
     <tr className={styles.line}>
       <th className={styles.coluna0}>
-        <img
-          className={styles.restaurant_logo}
-          src={`/images/restaurants/${props.cartProduct.restaurant.name
-            .toLowerCase()
-            .replaceAll(" ", "_")}.png`}
-          alt={`/images/restaurants/${props.cartProduct.restaurant.name
-            .toLowerCase()
-            .replaceAll(" ", "_")}.png`}
-          onClick={() => {
-            router.push(`/restaurant/menu/${props.cartProduct.restaurant?.id}`);
-          }}
-        />
+        <span className={styles.image_container}>
+          <img
+            className={styles.restaurant_logo}
+            src={`/images/restaurants/${props.cartProduct.restaurant.name
+              .toLowerCase()
+              .replaceAll(" ", "_")}.png`}
+            alt={`/images/restaurants/${props.cartProduct.restaurant.name
+              .toLowerCase()
+              .replaceAll(" ", "_")}.png`}
+            onClick={() => {
+              router.push(
+                `/restaurant/menu/${props.cartProduct.restaurant?.id}#menu`
+              );
+            }}
+          />
+        </span>
       </th>
       <th className={styles.coluna1}>
         <span className={styles.product_info}>

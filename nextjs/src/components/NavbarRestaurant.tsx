@@ -30,30 +30,24 @@ export default function NavbarRestaurant(props: {
         <li
           className={styles.li}
           onClick={() => {
-            router.push(`/restaurant/menu/${props.restaurant?.id}/#braches`);
+            router.push(`/restaurant/menu/${props.restaurant?.id}/#contact`);
           }}
         >
-          Unidades
+          Contato
         </li>
+       
       </ul>
-      <a className={styles.image_container}>
+      <span className={styles.image_container}>
         <img
           src={`/images/restaurants/${props.restaurant.name
             .toLowerCase()
             .replaceAll(" ", "_")}.png`}
           alt={props.restaurant.name.toLowerCase().replaceAll(" ", "_")}
         />
-      </a>
+      </span>
       <ul className={styles.ul_r}>
+        
         <li
-          className={styles.li}
-          onClick={() => {
-            router.push(`/restaurant/menu/${props.restaurant?.id}/#contact`);
-          }}
-        >
-          Contato
-        </li>
-        {/* <li
           className={styles.li}
           onClick={() => {
             if (session && session.user) {
@@ -64,7 +58,7 @@ export default function NavbarRestaurant(props: {
           }}
         >
           Carrinho
-        </li> */}
+        </li>
         <li className={styles.li}>
           <NavbarLogin />
         </li>
