@@ -3,6 +3,7 @@ import { defaultMenu, defaultRestaurant } from "@/types/types";
 import { Menu, Restaurant } from "@prisma/client";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
+import styles from "@/styles/Search.module.css";
 
 export const getServerSideProps: GetServerSideProps<{
   restaurants: Restaurant[];
@@ -21,10 +22,8 @@ export default function SearchPage({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
 
-  // console.log(restaurants)
   return (
-    <div>
-      {/* {JSON.stringify(restaurants)} */}
+    <div className={styles.page}>
       {restaurants ? (
         restaurants.map((restaurant: Restaurant) => {
           return <RestaurantCard restaurant={restaurant} />;

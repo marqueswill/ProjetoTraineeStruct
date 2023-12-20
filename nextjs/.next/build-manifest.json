@@ -27,15 +27,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/easteregg": [
+    "/search": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/easteregg.js"
-    ],
-    "/user/cart/[cartId]": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/user/cart/[cartId].js"
+      "static/chunks/pages/search.js"
     ]
   },
   "ampFirstPages": []
